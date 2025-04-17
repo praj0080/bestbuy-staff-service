@@ -43,7 +43,8 @@ Example `POST` request body:
   "department": "Sales",
   "email": "john.doe@bestbuy.com",
   "phone": "123-456-7890"
-} ```
+}
+```
 
 # Docker Image
 
@@ -66,9 +67,7 @@ A GitHub Actions process is incorporated into the work in order to automate the 
 This process:
 
 creates the Docker image
-
 sends it to Docker Hub.
-
 deploys into AKS (if secrets are set up).
 
 #  Technical Issues Encountered
