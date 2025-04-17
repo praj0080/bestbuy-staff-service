@@ -1,0 +1,40 @@
+name: CI/CD Pipeline for BestBuy Staff-Service
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run Lint/Test
+      run: echo "No tests configured yet"
+
+    - name: Build Docker Image
+      run: docker build -t ${{ secrets.praj0080}}/bestbuy-staff-service:latest .
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.praj0080}}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Push Docker Image
+      run: docker push ${{ secrets.praj0080}}/bestbuy-staff-service:latest
